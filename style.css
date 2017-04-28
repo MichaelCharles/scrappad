@@ -1,0 +1,150 @@
+body,
+html {
+    font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+#expander {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 10000px;
+    background: #673AB7;
+    transition: all ease 500ms;
+    height: 0px;
+    width: 0px;
+}
+
+#fileToLoad {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 90000;
+    background: red;
+    visibility: hidden;
+}
+
+#titlebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="text"],
+#titlebar p {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+nav p {
+    padding: 5px;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    flex-wrap: wrap;
+}
+
+nav button {
+    font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
+    background: transparent;
+    border: 0;
+    padding: 1em;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+}
+
+nav button:hover {
+    font-weight: 600;
+}
+
+textarea {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    bottom: 0;
+    width: 99%;
+    padding: 1em;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    font-size: 18px;
+    font-family: monospace;
+    outline: none;
+    margin-top: 50px;
+}
+
+input[type="text"] {
+    border: 0;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus {
+    background: #f2f2f2;
+}
+
+#dialog {
+    background: #673AB7;
+    padding: 1em;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    max-width: 400px;
+    width: 100%;
+    display: none;
+    cursor: pointer;
+}
+
+#about {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #673AB7;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+#about a {
+    color: #FFEB3B;
+}
+
+@media (max-width: 600px) {
+    #titlebar {
+        width: 100%;
+    }
+    textarea {
+        margin-top: 100px;
+    }
+}
+
+.container {
+    max-width: 500px;
+    padding: 1em;
+}

@@ -7,6 +7,8 @@ html {
     width: 100%;
     display: flex;
     overflow: hidden;
+    background: #212121;
+    color: #f2f2f2;
 }
 
 #expander {
@@ -39,6 +41,12 @@ input[type="text"],
 #titlebar p {
     font-weight: 600;
     font-size: 18px;
+    background: #212121;
+}
+
+input[type="text"] {
+    color: #f2f2f2;
+    border: 1px solid #212121;
 }
 
 nav p {
@@ -60,11 +68,12 @@ nav {
 
 nav button {
     font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
-    background: transparent;
     border: 0;
     padding: 1em;
     cursor: pointer;
     outline: none;
+    background: #212121;
+    color: #f2f2f2;
     text-transform: uppercase;
 }
 
@@ -84,9 +93,11 @@ textarea {
     justify-content: center;
     border: 0;
     font-size: 18px;
-    font-family: monospace;
+    font-family: "Ricty Diminished with Fira Code", "Ricty Diminished", "Fira Code", monospace;
     outline: none;
     margin-top: 50px;
+    background: #212121;
+    color: #f2f2f2;
 }
 
 input[type="text"] {
@@ -97,13 +108,13 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    background: #f2f2f2;
+    background: #414141;
 }
 
 #dialog {
     background: #673AB7;
     padding: 1em;
-    color: white;
+    color: #f2f2f2;
     border-radius: 5px;
     font-weight: 600;
     font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
@@ -121,7 +132,7 @@ input[type="text"]:focus {
     align-items: center;
     justify-content: center;
     background: #673AB7;
-    color: white;
+    color: #f2f2f2;
     position: absolute;
     top: 0;
     left: 0;

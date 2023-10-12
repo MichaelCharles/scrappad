@@ -2,12 +2,119 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Scrappad</title>
-    <link rel="stylesheet" href="style.css" />
+
     <link
       rel="icon"
       type="image/png"
       href="https://michaelcharles.github.io/scrappad/favicon.png"
     />
+    <style>
+      :root {
+        --primary-bg-color: #2a2131;
+        --primary-text-color: #f2f2f2;
+        --button-bg-color: #2a2131;
+        --expander-bg-color: #673ab7;
+        --link-color: #ffeb3b;
+      }
+
+      body,
+      html {
+        font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        overflow: hidden;
+        background: var(--primary-bg-color);
+        color: var(--primary-text-color);
+      }
+
+      #expander {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-radius: 10000px;
+        background: var(--expander-bg-color);
+        transition: all ease 500ms;
+        height: 0px;
+        width: 0px;
+      }
+
+      nav button {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
+        border: 0;
+        padding: 1em;
+        cursor: pointer;
+        outline: none;
+        background: var(--button-bg-color);
+        color: var(--primary-text-color);
+        text-transform: uppercase;
+      }
+
+      nav button:hover {
+        font-weight: 600;
+      }
+
+      textarea {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0 auto;
+        font-size: 18px;
+        width: 100%;
+        margin: 1em;
+        border: 0px transparent;
+        font-family: "Ricty Diminished with Fira Code", "Ricty Diminished",
+          "Fira Code", monospace;
+        outline: none;
+        background: var(--button-bg-color);
+        color: var(--primary-text-color);
+      }
+
+      #dialog {
+        padding: 1em;
+        background: var(--expander-bg-color);
+        color: var(--primary-text-color);
+        border-radius: 5px;
+        font-weight: 600;
+        font-family: Roboto, "Noto Sans", "Open Sans", Helvetica, sans-serif;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        max-width: 400px;
+        width: 100%;
+        display: none;
+        cursor: pointer;
+      }
+
+      #about {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: var(--expander-bg-color);
+        color: var(--primary-text-color);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        font-size: 32px;
+        cursor: pointer;
+      }
+
+      #about a {
+        color: var(--link-color);
+      }
+
+      .container {
+        max-width: 500px;
+        padding: 1em;
+      }
+    </style>
   </head>
   <body>
     <nav>
@@ -24,6 +131,60 @@
     <div id="expander"></div>
     <textarea></textarea>
   </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="script.js"></script>
+  <script>
+    "use strict";
+
+    document.addEventListener("DOMContentLoaded", function () {
+      let content = getCookie("content");
+
+      content = content.replace(/<L!B>/g, "\n");
+      document.querySelector("textarea").value = content;
+
+      document.querySelector("textarea").addEventListener("input", function () {
+        content = this.value;
+        content = content.replace(/\n\r?/g, "<L!B>");
+        setCookie("content", content);
+      });
+
+      document.querySelector("#about").addEventListener("click", function () {
+        this.style.display = "none";
+      });
+
+      document
+        .querySelector("#about-btn")
+        .addEventListener("click", function () {
+          const expander = document.querySelector("#expander");
+          expander.style.height = "300%";
+          expander.style.width = "300%";
+          expander.style.bottom = "-50%";
+          expander.style.right = "-50%";
+
+          setTimeout(() => {
+            document.querySelector("#about").style.display = "flex";
+            expander.style.height = "0";
+            expander.style.width = "0";
+            expander.style.bottom = "0";
+            expander.style.right = "0";
+          }, 600);
+        });
+    });
+
+    function setCookie(name, value) {
+      const date = new Date();
+      date.setFullYear(date.getFullYear() + 1); // Set expiration to 1 year from now
+      const expires = `expires=${date.toUTCString()}`;
+      document.cookie = `${name}=${value};${expires};path=/`;
+    }
+
+    function getCookie(name) {
+      const nameEQ = `${name}=`;
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i].trim();
+        if (c.indexOf(nameEQ) === 0)
+          return c.substring(nameEQ.length, c.length);
+      }
+      return "";
+    }
+  </script>
 </html>
